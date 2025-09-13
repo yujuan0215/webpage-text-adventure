@@ -1,0 +1,348 @@
+/* 復古終端機風格 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.terminal {
+    width: 90%;
+    max-width: 1000px;
+    height: 80vh;
+    background: #0a0a0a;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    overflow: hidden;
+    border: 2px solid #00ff00;
+}
+
+.terminal-header {
+    background: #1a1a1a;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 8px;
+    margin-right: 15px;
+}
+
+.btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.btn.close { background: #ff5f56; }
+.btn.minimize { background: #ffbd2e; }
+.btn.maximize { background: #27ca3f; }
+
+.terminal-title {
+    color: #00ff00;
+    font-size: 14px;
+    font-weight: bold;
+    flex: 1;
+    text-align: center;
+}
+
+.navigation-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-btn {
+    background: transparent;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+}
+
+.nav-btn:hover {
+    background: #00ff00;
+    color: #000;
+    transform: scale(1.1);
+}
+
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.nav-btn:disabled:hover {
+    background: transparent;
+    color: #00ff00;
+    transform: none;
+}
+
+.terminal-body {
+    height: calc(100% - 50px);
+    padding: 20px;
+    overflow-y: auto;
+    background: #000;
+}
+
+#game-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#story-display {
+    flex: 1;
+    color: #00ff00;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    overflow-y: auto;
+    padding-right: 10px;
+    max-height: 60vh;
+}
+
+#story-display::-webkit-scrollbar {
+    width: 8px;
+}
+
+#story-display::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+#story-display::-webkit-scrollbar-thumb {
+    background: #00ff00;
+    border-radius: 4px;
+}
+
+.story-line {
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: typeIn 0.5s ease-in forwards;
+}
+
+@keyframes typeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.choice {
+    display: block;
+    background: transparent;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    padding: 12px 15px;
+    margin: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    text-align: left;
+    width: 100%;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    word-wrap: break-word;
+    line-height: 1.4;
+}
+
+.choice:hover {
+    background: #00ff00;
+    color: #000;
+    transform: translateX(5px);
+}
+
+.choice.highlight {
+    background: #ffff00;
+    color: #000;
+    border-color: #ffff00;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+}
+
+#choices-container {
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
+    max-width: 100%;
+}
+
+#input-container {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+}
+
+.prompt {
+    color: #00ff00;
+    font-size: 16px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+#user-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    outline: none;
+    caret-color: #00ff00;
+}
+
+#user-input::placeholder {
+    color: #666;
+}
+
+/* 特殊效果 */
+.highlight {
+    color: #ffff00;
+    font-weight: bold;
+}
+
+.link {
+    color: #00ffff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.link:hover {
+    color: #ffff00;
+}
+
+.section-title {
+    color: #ff6b6b;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+    border-bottom: 1px solid #ff6b6b;
+    padding-bottom: 5px;
+}
+
+.course-item {
+    margin: 8px 0;
+    padding-left: 20px;
+    position: relative;
+}
+
+.course-item::before {
+    content: "▶";
+    position: absolute;
+    left: 0;
+    color: #00ff00;
+}
+
+.experience-item {
+    margin: 15px 0;
+    padding: 10px;
+    border-left: 3px solid #00ff00;
+    background: rgba(0, 255, 0, 0.05);
+}
+
+/* 響應式設計 */
+@media (max-width: 1200px) {
+    #choices-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    #choices-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .choice {
+        font-size: 12px;
+        padding: 10px 12px;
+        min-height: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .terminal {
+        width: 95%;
+        height: 90vh;
+    }
+    
+    #story-display {
+        font-size: 14px;
+    }
+    
+    #choices-container {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .choice {
+        font-size: 12px;
+        padding: 8px 12px;
+        min-height: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .terminal {
+        width: 98%;
+        height: 95vh;
+    }
+    
+    .terminal-body {
+        padding: 15px;
+    }
+    
+    #story-display {
+        font-size: 13px;
+    }
+    
+    .choice {
+        font-size: 11px;
+        padding: 8px 10px;
+        min-height: 40px;
+    }
+}
+
+/* 打字機效果 */
+.typing {
+    overflow: hidden;
+    border-right: 2px solid #00ff00;
+    white-space: nowrap;
+    animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #00ff00; }
+}

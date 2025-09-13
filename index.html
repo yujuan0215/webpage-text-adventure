@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字冒險 - 探索我的世界</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="terminal">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn close"></span>
+                <span class="btn minimize"></span>
+                <span class="btn maximize"></span>
+            </div>
+            <div class="terminal-title">Terminal - 探索我的世界</div>
+            <div class="navigation-buttons">
+                <button id="back-btn" class="nav-btn" title="返回上一頁">←</button>
+                <button id="home-btn" class="nav-btn" title="回到主選單">🏠</button>
+            </div>
+        </div>
+        <div class="terminal-body">
+            <div id="game-container">
+                <div id="story-display"></div>
+                <div id="choices-container"></div>
+                <div id="input-container">
+                    <span class="prompt">></span>
+                    <input type="text" id="user-input" placeholder="輸入指令或選擇...">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
